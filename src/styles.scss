@@ -1,0 +1,36 @@
+@use '@angular/material' as mat;
+@use './app/config/theme' as theme;
+
+@include mat.core();
+@include theme.zippycut-theme();
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: theme.$font-family;
+  background: var(--zc-bg);
+  color: var(--zc-text);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+:root {
+  --zc-bg: #f5f7fb;
+  --zc-surface: #ffffff;
+  --zc-text: #1a1f36;
+  --zc-muted: #5b647b;
+}
+
+.dark-theme {
+  --zc-bg: #0f1220;
+  --zc-surface: #1a2035;
+  --zc-text: #edf1ff;
+  --zc-muted: #b0b8cf;
+}

@@ -1,0 +1,4 @@
+.layout { min-height: 100vh; background: var(--zc-bg); }
+.sidebar-drawer { width: 260px; background: var(--zc-surface); }
+.content { padding: 16px; }
+@media (max-width: 900px){ .sidebar-drawer{width:220px;} .content{padding:12px;} }
