@@ -1,0 +1,14 @@
+<app-card title="Book your appointment">
+  <mat-stepper linear>
+    <mat-step [stepControl]="detailsForm" label="Select slot">
+      <form [formGroup]="detailsForm">
+        <mat-form-field appearance="outline"><mat-label>Service</mat-label><mat-select formControlName="service"><mat-option value="Haircut">Haircut</mat-option><mat-option value="Beard">Beard Grooming</mat-option></mat-select></mat-form-field>
+        <mat-form-field appearance="outline"><mat-label>Date</mat-label><input matInput [matDatepicker]="picker" formControlName="date"><mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle><mat-datepicker #picker></mat-datepicker></mat-form-field>
+        <mat-form-field appearance="outline"><mat-label>Time slot</mat-label><mat-select formControlName="slot"><mat-option value="10:00 AM">10:00 AM</mat-option><mat-option value="10:30 AM">10:30 AM</mat-option></mat-select></mat-form-field>
+      </form>
+      <button mat-flat-button color="primary" (click)="proceedToPayment()" [disabled]="processing">{{ processing ? 'Processing...' : 'Review & Pay' }}</button>
+    </mat-step>
+    <mat-step label="Review"><p>Confirm service details, address, and total amount before checkout.</p></mat-step>
+    <mat-step label="Payment"><p>Secure Razorpay checkout is launched in the next screen.</p></mat-step>
+  </mat-stepper>
+</app-card>

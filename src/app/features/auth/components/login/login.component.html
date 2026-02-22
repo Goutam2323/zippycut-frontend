@@ -1,0 +1,7 @@
+<app-card title="Welcome back">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <app-form-input [control]="form.controls.email" label="Email" placeholder="you@domain.com" errorText="Valid email required"></app-form-input>
+    <app-form-input [control]="form.controls.password" label="Password" type="password" errorText="Password required"></app-form-input>
+    <app-button ariaLabel="Login">Sign in</app-button>
+  </form>
+</app-card>

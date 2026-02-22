@@ -1,0 +1,8 @@
+<app-card title="Create account">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <app-form-input [control]="form.controls.name" label="Name" placeholder="Full Name" errorText="Name is required"></app-form-input>
+    <app-form-input [control]="form.controls.email" label="Email" placeholder="you@domain.com" errorText="Valid email required"></app-form-input>
+    <app-form-input [control]="form.controls.password" label="Password" type="password" errorText="At least 6 characters"></app-form-input>
+    <app-button ariaLabel="Register">Create account</app-button>
+  </form>
+</app-card>
