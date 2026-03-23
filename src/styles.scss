@@ -4,6 +4,24 @@
 @include mat.core();
 @include theme.zippycut-theme();
 
+:root {
+  --zc-primary: #0f172a;
+  --zc-primary-soft: #1e293b;
+  --zc-surface: #ffffff;
+  --zc-surface-soft: #f8fafc;
+  --zc-surface-muted: #eef2f7;
+  --zc-accent: #10b981;
+  --zc-accent-soft: rgba(16, 185, 129, 0.14);
+  --zc-text: #0f172a;
+  --zc-text-muted: #475569;
+  --zc-text-soft: #64748b;
+  --zc-shadow-1: 0 10px 30px rgba(15, 23, 42, 0.06);
+  --zc-shadow-2: 0 18px 45px rgba(15, 23, 42, 0.1);
+  --zc-shadow-3: 0 28px 60px rgba(15, 23, 42, 0.16);
+  --zc-radius: 16px;
+  --zc-max-width: 1240px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -12,8 +30,10 @@ html,
 body {
   margin: 0;
   min-height: 100%;
-  font-family: theme.$font-family;
-  background: var(--zc-bg);
+  font-family: Inter, theme.$font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(16, 185, 129, 0.08), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   color: var(--zc-text);
 }
 
@@ -21,16 +41,180 @@ body {
   overflow-x: hidden;
 }
 
-:root {
-  --zc-bg: #f5f7fb;
-  --zc-surface: #ffffff;
-  --zc-text: #1a1f36;
-  --zc-muted: #5b647b;
+button,
+input,
+select {
+  font: inherit;
 }
 
-.dark-theme {
-  --zc-bg: #0f1220;
-  --zc-surface: #1a2035;
-  --zc-text: #edf1ff;
-  --zc-muted: #b0b8cf;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.zc-page {
+  width: min(calc(100% - 32px), var(--zc-max-width));
+  margin: 0 auto;
+  padding: 24px 0 120px;
+}
+
+.zc-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  border-radius: var(--zc-radius);
+  box-shadow: var(--zc-shadow-1);
+}
+
+.zc-chip,
+.zc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--zc-shadow-1);
+  color: var(--zc-primary);
+}
+
+.zc-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.zc-section-title h2,
+.zc-section-title h3,
+.zc-page h1,
+.zc-page h2,
+.zc-page h3,
+.zc-page h4,
+.zc-page p {
+  margin: 0;
+}
+
+.zc-kicker {
+  color: var(--zc-accent);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.zc-muted {
+  color: var(--zc-text-muted);
+}
+
+.zc-soft {
+  color: var(--zc-text-soft);
+}
+
+.zc-btn,
+.zc-btn-primary,
+.zc-btn-secondary {
+  min-height: 52px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease, opacity 220ms ease;
+}
+
+.zc-btn:hover,
+.zc-btn-primary:hover,
+.zc-btn-secondary:hover {
+  transform: translateY(-1px);
+}
+
+.zc-btn:active,
+.zc-btn-primary:active,
+.zc-btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.zc-btn-primary {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, var(--zc-primary) 0%, #1e293b 100%) !important;
+  box-shadow: var(--zc-shadow-2);
+}
+
+.zc-btn-secondary {
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--zc-primary);
+}
+
+.zc-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.zc-card-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.zc-skeleton {
+  position: relative;
+  overflow: hidden;
+}
+
+.zc-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 1.6s infinite;
+}
+
+.page-transition {
+  animation: page-enter 260ms ease;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .zc-page {
+    padding-top: 32px;
+  }
+
+  .zc-card-grid.cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .zc-card-grid.cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .zc-card-grid.cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }

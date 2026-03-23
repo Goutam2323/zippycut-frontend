@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NgChartsModule } from 'ng2-charts';
 
 import { SharedModule } from '../../shared/shared.module';
 import { BarberDashboardComponent } from './components/dashboard/dashboard.component';
@@ -19,6 +18,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [BarberDashboardComponent, ManageServicesComponent, ManageSlotsComponent, BarberBookingsComponent],
-  imports: [CommonModule, SharedModule, NgChartsModule, RouterModule.forChild(routes)]
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)]
 })
 export class BarberModule {}

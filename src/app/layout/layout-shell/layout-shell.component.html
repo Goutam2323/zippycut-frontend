@@ -1,10 +1,8 @@
-<mat-sidenav-container class="layout" autosize [class.dark-theme]="darkMode">
-  <mat-sidenav #drawer mode="side" opened="true" class="sidebar-drawer">
-    <app-sidebar></app-sidebar>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <app-header (menuToggle)="drawer.toggle()" (themeToggle)="toggleTheme()"></app-header>
-    <main class="content"><router-outlet></router-outlet></main>
-    <app-footer></app-footer>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="layout-shell" [class.dark-theme]="darkMode">
+  <div class="layout-shell__bg"></div>
+  <app-header></app-header>
+  <main class="layout-shell__content page-transition">
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer></app-footer>
+</div>
