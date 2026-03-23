@@ -1,14 +1,88 @@
-<app-card title="Book your appointment">
-  <mat-stepper linear>
-    <mat-step [stepControl]="detailsForm" label="Select slot">
-      <form [formGroup]="detailsForm">
-        <mat-form-field appearance="outline"><mat-label>Service</mat-label><mat-select formControlName="service"><mat-option value="Haircut">Haircut</mat-option><mat-option value="Beard">Beard Grooming</mat-option></mat-select></mat-form-field>
-        <mat-form-field appearance="outline"><mat-label>Date</mat-label><input matInput [matDatepicker]="picker" formControlName="date"><mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle><mat-datepicker #picker></mat-datepicker></mat-form-field>
-        <mat-form-field appearance="outline"><mat-label>Time slot</mat-label><mat-select formControlName="slot"><mat-option value="10:00 AM">10:00 AM</mat-option><mat-option value="10:30 AM">10:30 AM</mat-option></mat-select></mat-form-field>
-      </form>
-      <button mat-flat-button color="primary" (click)="proceedToPayment()" [disabled]="processing">{{ processing ? 'Processing...' : 'Review & Pay' }}</button>
-    </mat-step>
-    <mat-step label="Review"><p>Confirm service details, address, and total amount before checkout.</p></mat-step>
-    <mat-step label="Payment"><p>Secure Razorpay checkout is launched in the next screen.</p></mat-step>
-  </mat-stepper>
-</app-card>
+<section class="zc-page booking-page page-transition">
+  <div class="booking-hero zc-panel">
+    <div>
+      <span class="zc-kicker">Step 2 of 3</span>
+      <h1>Select service + slot</h1>
+      <p class="zc-muted">Pick what you need, tap a time, and move to confirmation without friction.</p>
+    </div>
+    <div class="summary-chip">
+      <strong>Aurum Studio</strong>
+      <span>Indiranagar · 4.9 ★</span>
+    </div>
+  </div>
+
+  <section class="zc-grid booking-layout">
+    <article class="selection-panel zc-panel">
+      <div class="zc-section-title">
+        <div>
+          <span class="zc-kicker">Service</span>
+          <h2>What are you booking?</h2>
+        </div>
+      </div>
+      <div class="service-picks">
+        <button
+          *ngFor="let service of services; let i = index"
+          class="service-pick"
+          [class.is-selected]="selectedService.name === service.name"
+          (click)="chooseService(i)">
+          <div>
+            <strong>{{ service.name }}</strong>
+            <span>{{ service.duration }}</span>
+          </div>
+          <b>{{ service.price }}</b>
+        </button>
+      </div>
+    </article>
+
+    <article class="selection-panel zc-panel">
+      <div class="zc-section-title">
+        <div>
+          <span class="zc-kicker">Date</span>
+          <h2>Choose your day</h2>
+        </div>
+      </div>
+      <div class="date-row">
+        <button
+          *ngFor="let date of dates; let i = index"
+          class="date-pill"
+          [class.is-selected]="selectedDate.date === date.date"
+          (click)="chooseDate(i)">
+          <strong>{{ date.day }}</strong>
+          <span>{{ date.date }}</span>
+        </button>
+      </div>
+
+      <div class="zc-section-title slot-title">
+        <div>
+          <span class="zc-kicker">Slots</span>
+          <h2>Available times</h2>
+        </div>
+      </div>
+      <div class="slot-grid">
+        <button
+          *ngFor="let slot of slots"
+          class="slot-card"
+          [class.is-selected]="selectedSlot === slot.time"
+          [class.is-booked]="slot.state === 'booked'"
+          (click)="chooseSlot(slot.time, slot.state)">
+          {{ slot.time }}
+        </button>
+      </div>
+    </article>
+  </section>
+
+  <aside class="booking-summary zc-panel">
+    <div>
+      <span class="zc-kicker">Step 3 next</span>
+      <h3>Confirm in one tap</h3>
+      <p class="zc-soft">Your slot is reserved while you complete checkout.</p>
+    </div>
+    <div class="summary-lines">
+      <div><span>Barber</span><strong>Aurum Studio</strong></div>
+      <div><span>Service</span><strong>{{ selectedService.name }}</strong></div>
+      <div><span>Date</span><strong>{{ selectedDate.day }}, {{ selectedDate.date }}</strong></div>
+      <div><span>Time</span><strong>{{ selectedSlot }}</strong></div>
+    </div>
+    <button class="zc-btn-primary summary-cta" (click)="proceedToPayment()">Continue to confirm</button>
+  </aside>
+</section>

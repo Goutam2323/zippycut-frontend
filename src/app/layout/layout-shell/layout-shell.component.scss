@@ -1,4 +1,18 @@
-.layout { min-height: 100vh; background: var(--zc-bg); }
-.sidebar-drawer { width: 260px; background: var(--zc-surface); }
-.content { padding: 16px; }
-@media (max-width: 900px){ .sidebar-drawer{width:220px;} .content{padding:12px;} }
+.layout-shell {
+  min-height: 100vh;
+  position: relative;
+}
+
+.layout-shell__bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top right, rgba(15, 23, 42, 0.06), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.08), transparent 20%);
+}
+
+.layout-shell__content {
+  position: relative;
+  z-index: 1;
+}

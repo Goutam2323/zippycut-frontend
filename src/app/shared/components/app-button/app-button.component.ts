@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-button',
   template: `<button mat-flat-button class="zc-btn-primary" [color]="color" [disabled]="disabled" [attr.aria-label]="ariaLabel"><ng-content></ng-content></button>`,
   changeDetection: ChangeDetectionStrategy.OnPush
